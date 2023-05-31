@@ -17,7 +17,9 @@ class App extends Component {
   render() {
     const { simpsons } = this.state;
 
-    if (!simpsons) return <Loading />;
+    // Conditional rendering
+
+    if (!simpsons) return <Loading />; // This (turnary) will show loading while data is loading. But right now it is pointing to the Loading component
 
     return (
       <>
