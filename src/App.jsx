@@ -8,6 +8,7 @@ class App extends Component {
   state = {};
 
   async componentDidMount() {
+    // This will load after Loading
     const { data } = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=50`
     );
