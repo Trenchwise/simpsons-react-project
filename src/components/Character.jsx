@@ -24,7 +24,11 @@ class Character extends Component {
         />
         <Quote quote={quote} />
         <Image image={image} like={like} />
-        <Delete />
+        <Delete
+          onDelete={this.props.onDelete}
+          quote={quote}
+          character={character}
+        />
       </div>
     );
   }

@@ -8,24 +8,33 @@ class App extends Component {
   state = {};
 
   async componentDidMount() {
-    // This will load after Loading
     const { data } = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=50`
     );
     this.setState({ simpsons: data });
   }
 
+  onDelete = (index) => {
+    const copy = [...this.state.simpsons]; // This makes a copy of the state
+    copy.splice(index, 1); // This spices at position one in the index
+    this.setState({ simpsons: copy }); // This tells React to update the copy
+
+    // Can also write the above like this
+    // const simpsons = [...this.state.simpsons]
+    // `    // simpsons.splice(index, 1)
+    //     // this.setState({simpsons})
+  };
+
   render() {
     const { simpsons } = this.state;
 
-    // Conditional rendering
-
-    if (!simpsons) return <Loading />; // This (turnary) will show loading while data is loading. But right now it is pointing to the Loading component
+    if (!simpsons) return <Loading />;
 
     return (
       <>
         <h1>Total no of liked chars #</h1>
-        <Simpsons simpsons={simpsons} />
+        <Simpsons simpsons={simpsons} onDelete={this.onDelete} />
+        {/* This passes into simpsons the onDelete, the simpsons component now has access to the onDelete function */}
       </>
     );
   }
