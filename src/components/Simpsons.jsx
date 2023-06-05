@@ -11,7 +11,7 @@ class Simpsons extends Component {
           return (
             <Character
               item={item}
-              key={item.quote}
+              key={item.id}
               onDelete={this.props.onDelete}
             />
           );

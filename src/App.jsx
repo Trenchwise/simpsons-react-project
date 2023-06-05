@@ -9,14 +9,26 @@ class App extends Component {
 
   async componentDidMount() {
     const { data } = await axios.get(
-      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50`
+      `https://thesimpsonsquoteapi.glitch.me/quotes?count=10`
     );
+
+    // adding a unique ID to each character
+    data.forEach((element, index) => {
+      element.id = index + Math.random() + index;
+    });
+
     this.setState({ simpsons: data });
   }
 
-  onDelete = (index) => {
+  onDelete = (id) => {
+    // I need help to understand this bit
+    const indexOf = this.state.simpsons.findIndex((char) => {
+      return char.id === id;
+      // char.quote === quote && char.character === character;
+    });
+
     const copy = [...this.state.simpsons]; // This makes a copy of the state
-    copy.splice(index, 1); // This spices at position one in the index
+    copy.splice(indexOf, 1); // This spices at position one in the index
     this.setState({ simpsons: copy }); // This tells React to update the copy
 
     // Can also write the above like this

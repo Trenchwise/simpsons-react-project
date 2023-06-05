@@ -41,7 +41,7 @@ When working with classed based React it doesn't matter what order the functions
 
 How does the function know what to delete. You will need to tell it something unique so it can figuer it out.
 
-First Russell trys using index to configer the delet buttons - but there is a problem with this.
+First Russell trys using index to configure the delete buttons - but there is a problem with this.
 
 //// Using index to wire up the delete button.
 
@@ -62,11 +62,11 @@ The funcion lives in App - but the button lives in Delete. So now need to pass t
 
 This process is known as prop drilling. Need to drill the props one level at a time.
 
-To start this ondelete is sent to Simpsons at line 36. It will then be passed throught the other classes until it gets to the delete button.
+To start this onDelete is sent to Simpsons at line 36. It will then be passed through the other classes until it gets to the delete button.
 
 The syntax changes slightly as the function is passed down (App can pass it directly because it's in its current scope). This is because you only get things through your parent as a prop. See below. There is also an example of this in Simpsons on line 11.
 
-onDelete={this.props.onDelete} //
+onDelete={this.props.onDelete}
 
 This is repeated until you get to character, which then gives the delete button the information it needs.
 
@@ -78,7 +78,7 @@ Now need to call back the function.
 
 The button will now have the following code. On click of the delete button you need to call the this.props.onDelete
 
-Because you pass the function all the way into another function.Now it can call the function the parent which sends that data upstairs.
+Because you pass the function all the way into another function. Now it can call the function the parent which sends that data upstairs.
 
 onClick={() => this.props.onDelete(0)}
 
@@ -90,11 +90,51 @@ Now the button will always delete element zero.
 
 A good way of doing this is to make it delete something unique.
 
-First Russell tries marry the quote and the character
+First Russell tries to marry the quote and the character
 
-In Character:
+In Character (line 27):
 <Delete onDelete={this.props.onDelete} quote={quote} character={character}
 
-Now the delete button know the quote and the character that it is being created from.
+The above has now passed information about the quote and the character to the delete button. Now the delete button knows the quote and the character that it is being created from.
 
-Now in Delete - send the quote and character - you can see this in on line 8 in delete
+In Delete (line 10):
+<button
+onClick={() =>
+this.props.onDelete(this.props.quote, this.props.character, this.props.character)
+} >
+
+Now in onDelete in Delete - it is now sending character and quote information to the parent component using this.props.character ect. You can send many things not just one
+
+In App - now re-setting what Ondelete does.
+
+OnDelete will now take quote and character instead of index.
+
+    QUESTION - Delete button now knows the character and quote information contained in the data. Therefore delete now knows which character and quote it is attached to. Why does the below need to be send back up to the parent component?
+
+    After prop drilling ok. BUT the process after passing down charcter and quote to the delete button. Why do we need to apply indexOf?
+
+     this.props.onDelete(this.props.quote, this.props.character, )
+
+Here we are giving each character a unique number by using
+
+const indexOf = this.state.simpsons.findIndex((char) => {
+char.quote === quote && char.character === character;
+});
+
+-- findIndex
+The findIndex() method returns the index of the first element in an array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.
+
+Splicing code is re-added (uncommented) and indexOf is added at line 24 of App instead of index.
+
+The app can now delete the character it is clicked on. However it doesn't work if there are duplicates in the data. As then there no unique ID.
+
+Russell then goes on to do this. In the demo.
+
+He does this by adding a unique ID to (line 16 in App)
+
+-- The forEach() method executes a provided function once for each array element.
+
+console.log(data); will show you the data
+
+After the unique id information is added in App (in the data section)
+Will then need to update the following: - Simpsons (line14) key and exchange character for ID - Character
