@@ -20,33 +20,45 @@ class App extends Component {
     this.setState({ simpsons: data });
   }
 
+  //Updates the state for the specific character to make it liked or disliked
+  onLikeToggle = (id) => {
+    const indexOf = this.state.simpsons.findIndex((char) => {
+      return char.id === id;
+    });
+
+    const simpsons = [...this.state.simpsons];
+
+    simpsons[indexOf].liked = true;
+
+    console.log(simpsons);
+  };
+
   onDelete = (id) => {
     // I need help to understand this bit
     const indexOf = this.state.simpsons.findIndex((char) => {
       return char.id === id;
-      // char.quote === quote && char.character === character;
     });
 
     const copy = [...this.state.simpsons]; // This makes a copy of the state
     copy.splice(indexOf, 1); // This spices at position one in the index
     this.setState({ simpsons: copy }); // This tells React to update the copy
-
-    // Can also write the above like this
-    // const simpsons = [...this.state.simpsons]
-    // `    // simpsons.splice(index, 1)
-    //     // this.setState({simpsons})
   };
 
   render() {
     const { simpsons } = this.state;
 
-    if (!simpsons) return <Loading />;
+    if (!simpsons) return <Loading />; //This checks that there is data
+
+    if (simpsons.lenth === 0) return <p>You have deleted everything</p>;
 
     return (
       <>
         <h1>Total no of liked chars #</h1>
-        <Simpsons simpsons={simpsons} onDelete={this.onDelete} />
-        {/* This passes into simpsons the onDelete, the simpsons component now has access to the onDelete function */}
+        <Simpsons
+          simpsons={simpsons}
+          onDelete={this.onDelete}
+          onLikeToggle={this.onLikeToggle}
+        />
       </>
     );
   }

@@ -1,9 +1,27 @@
 Session 1
 
-HW
-Wire up the delete button
-Make the character face the correct direction
+HW 1
+Wire up the delete button - done
+Make the character face the correct direction - done
 Show the total number of liked characters in the App component
+
+HW 2
+
+Take my latest simpsons project (or use your own) and extend it with the following:
+Ability to sort the characters in at least two ways
+Ability to filter the characters (search box)
+Ability to reset the sort and filter
+
+THINGS TO REMEMBER:
+
+- State is an object that keeps track of variable changes in components.
+- Prop drilling is simply passing down props to child components
+- You can attach a message to the state
+
+Resources:
+
+Lifting State and prop drilling
+https://medium.com/@kristinethejohnson/lifting-state-up-prop-drilling-in-react-3ef3367fca7a
 
 When approaching this task. Good idea to draw a diagram to figuer out which files need to be amended.
 
@@ -121,6 +139,10 @@ const indexOf = this.state.simpsons.findIndex((char) => {
 char.quote === quote && char.character === character;
 });
 
+const copy = [...this.state.simpsons]; // This makes a copy of the state
+copy.splice(indexOf, 1); // This spices at position one in the index
+this.setState({ simpsons: copy }); // This tells React to update the copy
+
 -- findIndex
 The findIndex() method returns the index of the first element in an array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.
 
@@ -138,3 +160,21 @@ console.log(data); will show you the data
 
 After the unique id information is added in App (in the data section)
 Will then need to update the following: - Simpsons (line14) key and exchange character for ID - Character
+
+/// N.B - You can attach a message to the state
+
+When trying to make the characters face the correct direction. In Character - CharacterDirection was added to the destructering and the return was repeated and image and quote were switched around, this made the character appear as though it was facing the direction of the quote.
+
+This does mean that chuncks of code have been repeated. However you can also wrap the quote in a div and add a class name of characterDirection and then use flex box to give it an order of plus or minus one - this is pure CSS solution
+
+To show the number of liked characters
+
+Lifting the state would be clunky because each character has its own state and using the onLikeToggle and lifting it in App would act like a big on/off switch.
+
+Here Russell suggests to add to the character whether it is liked in App. He removes the onLikeToggle function from Character and the button from Name. This means that the liked button no longer does anything
+
+Principal called - The single source of truth:
+
+If there is a list of characters then all the data about the characters should live in the same place. Otherwise it can get confusing.
+
+In App on line 24 OnLikeToggle - goes and finds the character and makes a copy of it. On line 29 adds a liked property of true to the item. Now need to pass the OnLikeToggle down.
