@@ -141,7 +141,7 @@ char.quote === quote && char.character === character;
 
 const copy = [...this.state.simpsons]; // This makes a copy of the state
 copy.splice(indexOf, 1); // This spices at position one in the index
-this.setState({ simpsons: copy }); // This tells React to update the copy
+this.setState({ simpsons: copy }); // This tells React to update the copyMaking
 
 -- findIndex
 The findIndex() method returns the index of the first element in an array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.
@@ -178,3 +178,32 @@ Principal called - The single source of truth:
 If there is a list of characters then all the data about the characters should live in the same place. Otherwise it can get confusing.
 
 In App on line 24 OnLikeToggle - goes and finds the character and makes a copy of it. On line 29 adds a liked property of true to the item. Now need to pass the OnLikeToggle down.
+
+After this has been passed down to character, Simpons and Name, then an event listener is added to the button. Line 10 in Name.
+
+Now the information in the data has been changed. Each character will now have a liked property in the console log based on whether the liked button has been clicked or not.
+
+Now there is a single source of truth. All the data now lives in one object.
+
+However clicking the button again does not unlike the data.
+
+There for a turnary is added. The button starts its life as being liked: false. Clicking the button then adds the liked property.
+
+simpsons[indexOf].liked = !simpsons[indexOf].liked; // this line makes the character be the opposite of its self.
+
+After this is done you need to tell the state that the information has changed.
+
+After liked button toggle is working, now need to calculate the number of liked characters. This is done in render in App - because we dont want to store the number in the state. once its been used its not needed anymore.
+
+In App
+// Calculates the number of likes characters
+let total = 0; //creates counter
+simpsons.forEach(char => { // loops over the data
+if(char.liked) total++; // if character is liked add one to the total
+})
+
+This creates a counter, loops over the data and if the character is like add one to the total.
+
+total is then added into line 62 after the #.
+
+As there is a single source of truth (one place where all the data lives). when a character is deleted this affects the number of liked.

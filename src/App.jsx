@@ -28,9 +28,9 @@ class App extends Component {
 
     const simpsons = [...this.state.simpsons];
 
-    simpsons[indexOf].liked = true;
+    simpsons[indexOf].liked = !simpsons[indexOf].liked;
 
-    console.log(simpsons);
+    this.setState({ simpsons });
   };
 
   onDelete = (id) => {
@@ -51,12 +51,18 @@ class App extends Component {
 
     if (simpsons.lenth === 0) return <p>You have deleted everything</p>;
 
+    // Calculates the number of likes characters
+    let total = 0;
+    simpsons.forEach((char) => {
+      if (char.liked) total++;
+    });
+
     return (
       <>
-        <h1>Total no of liked chars #</h1>
+        <h1>Total no of liked chars #{total}</h1>
         <Simpsons
           simpsons={simpsons}
-          onDelete={this.onDelete}
+          onDelete={this.onDelete} //why is this yellow and not blue?
           onLikeToggle={this.onLikeToggle}
         />
       </>

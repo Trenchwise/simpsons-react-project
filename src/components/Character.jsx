@@ -6,18 +6,23 @@ import Delete from "./Delete";
 
 class Character extends Component {
   render() {
-    const { character, quote, image, id, characterDirection } = this.props.item;
+    const { character, quote, image, id, characterDirection, liked } =
+      this.props.item;
+    const { onLikeToggle, onDelete } = this.props;
+
+    //Character splits apart the state into the above
 
     return (
       <div className="characterContainer">
         <Name
           character={character}
-          onLikeToggle={this.props.onLikeToggle}
+          onLikeToggle={onLikeToggle}
           id={id}
+          liked={liked}
         />
         <Image image={image} />
         <Quote quote={quote} />
-        <Delete onDelete={this.props.onDelete} id={id} />
+        <Delete onDelete={onDelete} id={id} />
       </div>
     );
   }
