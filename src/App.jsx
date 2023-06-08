@@ -34,7 +34,6 @@ class App extends Component {
   };
 
   onDelete = (id) => {
-    // I need help to understand this bit
     const indexOf = this.state.simpsons.findIndex((char) => {
       return char.id === id;
     });
@@ -46,6 +45,7 @@ class App extends Component {
 
   render() {
     const { simpsons } = this.state;
+    console.log("render ran");
 
     if (!simpsons) return <Loading />; //This checks that there is data
 
@@ -56,6 +56,7 @@ class App extends Component {
     simpsons.forEach((char) => {
       if (char.liked) total++;
     });
+    simpsons.length = 1;
 
     return (
       <>

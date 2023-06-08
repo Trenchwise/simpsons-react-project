@@ -207,3 +207,5 @@ This creates a counter, loops over the data and if the character is like add one
 total is then added into line 62 after the #.
 
 As there is a single source of truth (one place where all the data lives). when a character is deleted this affects the number of liked.
+
+Questions - why not jump from App (where data is pulled) and go straight into destrcuturing i.e character?
