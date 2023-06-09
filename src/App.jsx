@@ -3,6 +3,7 @@ import axios from "axios";
 import Loading from "./components/Loading";
 import Simpsons from "./components/Simpsons";
 import "./App.css";
+import Search from "./components/Search";
 
 class App extends Component {
   state = {};
@@ -18,6 +19,7 @@ class App extends Component {
     });
 
     this.setState({ simpsons: data });
+    // console.log(data);
   }
 
   //Updates the state for the specific character to make it liked or disliked
@@ -43,9 +45,14 @@ class App extends Component {
     this.setState({ simpsons: copy }); // This tells React to update the copy
   };
 
+  // Function that listens for text going into text box
+  onSearchInput = (e) => {
+    this.setState({ searchInput: e.target.value });
+  };
+
   render() {
+    console.log(this.state);
     const { simpsons } = this.state;
-    console.log("render ran");
 
     if (!simpsons) return <Loading />; //This checks that there is data
 
@@ -56,15 +63,23 @@ class App extends Component {
     simpsons.forEach((char) => {
       if (char.liked) total++;
     });
-    simpsons.length = 1;
+    // simpsons.length = 1;
+
+    //Calculates the the data we want to show/filter
+
+    // const filteredList = filter(item => {
+    //   if (item)
+    // });
 
     return (
       <>
         <h1>Total no of liked chars #{total}</h1>
+        <Search onSearchInput={this.onSearchInput} />
         <Simpsons
           simpsons={simpsons}
           onDelete={this.onDelete} //why is this yellow and not blue?
           onLikeToggle={this.onLikeToggle}
+          onSearchInput={this.onSearchInput}
         />
       </>
     );

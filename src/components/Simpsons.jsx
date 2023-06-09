@@ -14,6 +14,7 @@ class Simpsons extends Component {
               key={item.id}
               onDelete={onDelete}
               onLikeToggle={onLikeToggle}
+              onSearchInput={this.onSearchInput}
             />
           );
         })}

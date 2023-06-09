@@ -3,6 +3,7 @@ import Name from "./Name";
 import Quote from "./Quote";
 import Image from "./Image";
 import Delete from "./Delete";
+import Search from "./Search";
 
 class Character extends Component {
   render() {
@@ -16,13 +17,14 @@ class Character extends Component {
       <div className="characterContainer">
         <Name
           character={character}
-          onLikeToggle={onLikeToggle}
+          onLikeToggle={this.props.onLikeToggle}
           id={id}
           liked={liked}
         />
         <Image image={image} />
         <Quote quote={quote} />
-        <Delete onDelete={onDelete} id={id} />
+        <Delete onDelete={this.props.onDelete} id={id} />
+        {/* <Search onSearchInput={this.onSearchInput} /> */}
       </div>
     );
   }

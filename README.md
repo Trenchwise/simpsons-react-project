@@ -152,6 +152,10 @@ The app can now delete the character it is clicked on. However it doesn't work i
 
 Russell then goes on to do this. In the demo.
 
+////// Adding a unique ID to each character
+
+- This is so program knows what character to delete. Adding an ID no into the data its self (into the array)
+
 He does this by adding a unique ID to (line 16 in App)
 
 -- The forEach() method executes a provided function once for each array element.
@@ -161,13 +165,15 @@ console.log(data); will show you the data
 After the unique id information is added in App (in the data section)
 Will then need to update the following: - Simpsons (line14) key and exchange character for ID - Character
 
-/// N.B - You can attach a message to the state
+N.B - You can attach a message to the state
+
+///// Making the characters face different directions
 
 When trying to make the characters face the correct direction. In Character - CharacterDirection was added to the destructering and the return was repeated and image and quote were switched around, this made the character appear as though it was facing the direction of the quote.
 
 This does mean that chuncks of code have been repeated. However you can also wrap the quote in a div and add a class name of characterDirection and then use flex box to give it an order of plus or minus one - this is pure CSS solution
 
-To show the number of liked characters
+///// To show the number of liked characters
 
 Lifting the state would be clunky because each character has its own state and using the onLikeToggle and lifting it in App would act like a big on/off switch.
 
@@ -209,3 +215,29 @@ total is then added into line 62 after the #.
 As there is a single source of truth (one place where all the data lives). when a character is deleted this affects the number of liked.
 
 Questions - why not jump from App (where data is pulled) and go straight into destrcuturing i.e character?
+
+Because we seperate each part by concern. For example: - App: is where all the data lives. - Simpsons maps over the data and breaks data down into characters - Character breaks data down into name, image, quote and adds a delete button.
+
+//// Filtering the characters 1.36
+
+Add a search box underneath number of liked characters. To do this. Created a new component called search and returned Search in App.
+
+Then need to listen on the event of someone writing in the text box.
+
+To do this need to write a function in App. The contents of the search box needs to go into App because thats where the data lives. The function will take the event which is raised when the person starts typing. Then when the person types its going to store the information in the state. Then set the state to contain the search input.
+
+// Function that listens for text going into text box
+onSearchInput = (e) => {
+this.setState({ searchInput: e.target.value });
+};
+
+Then Russell adds a console log in render to show the state.
+
+Question:
+Why do we destructure like this in Character?
+
+Then the function is passed down into Search which I put in App.. Is this right?
+
+To filter - you then just calculate when you need it. Instead of storing the data in the data and having two versions of the information
+
+Need help - got to as far as line 21 in App to try and filter the characters. Not sure about how to destructure the data...
