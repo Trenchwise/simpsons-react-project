@@ -65,11 +65,14 @@ class App extends Component {
     });
     // simpsons.length = 1;
 
+    //Come back to this
     //Calculates the the data we want to show/filter
-
-    // const filteredList = filter(item => {
-    //   if (item)
-    // });
+    //remove characters that are now in the search term
+    const filtered = characters.filter((character) => {
+      return character.character
+        .toLowerCase()
+        .includes(searchTerm ? searchTerm.toLowerCase() : "");
+    });
 
     return (
       <>
