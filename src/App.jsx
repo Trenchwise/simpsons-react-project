@@ -68,11 +68,11 @@ class App extends Component {
     //Come back to this
     //Calculates the the data we want to show/filter
     //remove characters that are now in the search term
-    const filtered = characters.filter((character) => {
-      return character.character
-        .toLowerCase()
-        .includes(searchTerm ? searchTerm.toLowerCase() : "");
-    });
+    // const filtered = character.filter((character) => {
+    //   return character.character
+    //     .toLowerCase()
+    //     .includes(searchTerm ? searchTerm.toLowerCase() : "");
+    // });
 
     return (
       <>
