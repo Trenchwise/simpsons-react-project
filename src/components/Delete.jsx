@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 const Delete = (props) => {
-  const { onDelete, id } = this.props;
+  const { onDelete, id } = props;
   return (
     <div>
       <button onClick={() => onDelete(id)}>Delete</button>

@@ -2,7 +2,7 @@ import React from "react";
 import Character from "./Character";
 
 const Simpsons = (props) => {
-  const { simpsons, onDelete, onLikeToggle } = props;
+  const { simpsons, onDelete, onLikeToggle, onSearchInput } = props;
   console.log("I work");
 
   return (
@@ -14,7 +14,7 @@ const Simpsons = (props) => {
             key={item.id}
             onDelete={onDelete}
             onLikeToggle={onLikeToggle}
-            onSearchInput={this.onSearchInput}
+            onSearchInput={onSearchInput}
           />
         );
       })}
