@@ -8,6 +8,7 @@ import "./App.css";
 
 const App = () => {
   const [simpsons, setSimpsons] = useState(); //The box that holds the data
+  const [character, setCharacter] = useState(); //To ask the API to filter characters
 
   const getData = async () => {
     // The function that gets the data
@@ -59,7 +60,7 @@ const App = () => {
       onDelete={onDelete}
       simpsons={simpsons}
     />
-  ); //otherwise return data
+  );
 };
 
 export default App;

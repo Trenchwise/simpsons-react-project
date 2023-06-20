@@ -152,4 +152,12 @@ if (!simpsons) return <h1>Loading</h1>;
 
 return <Simpsons Simpsons={Simpsons} />;
 
-Then made a wea
+Functional React 2
+
+Homework:
+Update the functional simpsons project to the following
+
+- On search, do not filter, instead ask the API for the correct data
+- Add useCallback to the get data function
+- Use Joi (or similar) to validate the user input
+- Make the search box a controlled component (implement any way you like)
