@@ -47,7 +47,7 @@ Split the screen with the old component and in the new screen
 
 1. Remove the class sentence
    class Simpsons extends Component { (dont forget the other curly)
-2. On the following sentence remove the word render and adjust the sentence to read like the below. The key must be the component name and props has been written inside the brackets and sentce is turned into a fat arrow function
+2. Rename the render method. On the following sentence remove the word render and adjust the sentence to read like the below. The key must be the component name and props has been written inside the brackets and sentce is turned into a fat arrow function
    const Search = (props) => {
 
 3. Also need to remove any this. from the word props.
@@ -74,15 +74,19 @@ Classes have members one of those members could be data called state. A Function
 
 ✅ A Hook
 
-Gives you the ability to hook into functionality that traditionally is only in a class based component. We need hooks because everytime the component rerenders it is a new version. A new versdion has no memory of what has happend before.
+Gives you the ability to hook into functionality that traditionally is only in a class based component. We need hooks because everytime the component rerenders it is a new version. A new version has no memory of what has happend before.
 
 ✅ A hook helps data remain in the component.
 
-The below are types of Hooks
+----- Types of Hooks ------
 
-✅ useState - is the hook that gives you access to the state in a functional components. All hooks have the same structure.
+✅ useState
 
-When you call useState a special box is being created that holds the data and also holds a function that lets you manipulate the data that is inside. It does this using a closure. A closure is an action that has access to the upper scope. Therefore it can hold datd beyond the rerender of the component
+✅ useEffect
+
+✅ useCallback
+
+When you call useState a special box is being created that holds the data and also holds a function that lets you manipulate the data that is inside. It does this using a closure. A closure is an action that has access to the upper scope. Therefore it can hold data beyond the rerender of the component.
 
 UseState give you back two things: 1. The data 2. A way of changing the data
 
@@ -92,7 +96,7 @@ Below Russell, demos counter
 
 const App = () => {
 const [count, setCount] = useState(0);
-cost [name, setName] = useState(Tanya's Counter)
+cost [name, setName] = useState(Tanyas Counter)
 }
 
 Use this way/convention to name useState boxes.
@@ -107,29 +111,29 @@ Return (
 </>
 )
 
-Above are two sets of datd individually named
+Above are two sets of data individually named
 
 ✅ lifecycles are also different in Functional
 
 ✅ useEffect is a hook and all hooks are functions.
-There are three ways of writing useEffect. Its cannot contain asyncronour behaviour
+There are three ways of writing useEffect. The difference is how the brackets are used. It cannot contain asyncronous behaviour
 
 Lets you use the code off of the back of running some code. It is mixture of componentDidMount and componentDidUpdate
 
-// component did mount and component did update
-useEffect (() => {
-console.log ("Use effect ran - without any dependencies");
-}, []) //// always run
+1. // component did mount and component did update
+   useEffect (() => {
+   console.log ("Use effect ran - without any dependencies");
+   }, []) //// always run
 
-// A version of component did mount
-useEffect (() => {
-console.log ("Use effet arn but only once");
-}, []) //// The empty square brackets means it only runs once
+2. // A version of component did mount
+   useEffect (() => {
+   console.log ("Use effet arn but only once");
+   }, []) //// The empty square brackets means it only runs once
 
-// component did update. In the brackets you write the things you want to cause it to trigger
-useEffect (() => {
-console.log ("Use effet arn but only when the count changes");
-}, [count]) //// Everytime count is updated it will run
+3. // component did update. In the brackets you write the things you want to cause it to trigger
+   useEffect (() => {
+   console.log ("Use effet arn but only when the count changes");
+   }, [count]) //// Everytime count is updated it will run
 
 ✅useCallback
 
@@ -137,3 +141,15 @@ Wrapes the function inside a hook , which uses useCallback which means it only r
 
 In Functional the order of the statements matter
 Hooks always go at the top of the file
+
+Once the data has made into functional. Have checked it is showing data in the terminal.
+
+Set a loading message. If there is no data return loading. Otherwise show data.
+
+Code below
+
+if (!simpsons) return <h1>Loading</h1>;
+
+return <Simpsons Simpsons={Simpsons} />;
+
+Then made a wea
